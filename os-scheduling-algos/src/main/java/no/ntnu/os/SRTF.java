@@ -66,9 +66,7 @@ public class SRTF implements Scheduler {
                 // Process has finished
                 completed++;
                 Process p = processes.get(selected);
-                p.completionTime = currentTime;
-                p.turnaroundTime = p.completionTime - p.arrivalTime;
-                p.waitingTime    = p.turnaroundTime - p.burstTime;
+                p.derive(currentTime);
             }
         }
         return processes;
