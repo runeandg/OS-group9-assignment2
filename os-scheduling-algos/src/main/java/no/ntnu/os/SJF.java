@@ -60,9 +60,7 @@ public class SJF implements Scheduler {
 
             remaining.remove(shortest);
             currentTime += shortest.burstTime;
-            shortest.completionTime = currentTime;
-            shortest.turnaroundTime = shortest.completionTime - shortest.arrivalTime;
-            shortest.waitingTime    = shortest.turnaroundTime - shortest.burstTime;
+            shortest.derive(currentTime);
             result.add(shortest);
         }
         return result;

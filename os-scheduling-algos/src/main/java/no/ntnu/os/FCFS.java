@@ -26,7 +26,8 @@ public class FCFS implements Scheduler {
             processes.add(p.copy());
         }
 
-        // Sort by arrival time; Java's sort is stable so equal arrivals keep input order
+        // Sort by arrival time; Java's sort is stable so equal arrivals keep input
+        // order
         processes.sort(Comparator.comparingInt(p -> p.arrivalTime));
 
         int currentTime = 0;
@@ -36,9 +37,7 @@ public class FCFS implements Scheduler {
                 currentTime = p.arrivalTime;
             }
             currentTime += p.burstTime;
-            p.completionTime  = currentTime;
-            p.turnaroundTime  = p.completionTime - p.arrivalTime;
-            p.waitingTime     = p.turnaroundTime - p.burstTime;
+            p.derive(currentTime);
         }
         return processes;
     }

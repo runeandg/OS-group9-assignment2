@@ -23,4 +23,10 @@ public class Process {
     public Process copy() {
         return new Process(pid, arrivalTime, burstTime);
     }
+
+    public void derive(int completedTime) {
+        this.completionTime = completedTime;
+        this.turnaroundTime = completionTime - arrivalTime;
+        this.waitingTime = turnaroundTime - burstTime;
+    }
 }
